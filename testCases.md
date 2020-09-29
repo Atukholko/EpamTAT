@@ -9,3 +9,4 @@
 | TU07 | Check for search with invalid data | 1.Go to site 21vek.by 2.Type in search line | string="шшшшшш" | Message:"Найдено 0 товаров" | As expected | Pass |
 | TU08 | Add to Shopping Cart | 1.Go to site 21vek.by 2.Find goods 3.Click "В корзину" | - | Goods added to the shopping cart | As expected | Pass |
 | TU09 | Place an order | 1.Go to site 21vek.by 2.Go to shopping cart 3.Click "Оформить заказ" 4.Insert info 4.Click "Подтвердить зказ" | Address="ул. Такая-то, д. 12" PhoneNumber=3752956686** | Order get status "Оформлен, ожидает подтверждения" | As expected | Pass |
+| TU10 | Cancel the order | 1.Call the operator 2. Ask to delete the order | - | Order get status "отменен" | As expected | Pass |
