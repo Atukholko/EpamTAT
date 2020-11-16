@@ -1,6 +1,6 @@
-package Planes;
+package model.planes;
 
-import models.MilitaryType;
+import model.type.MilitaryType;
 
 import java.util.Objects;
 
@@ -20,7 +20,7 @@ public class MilitaryPlane extends Plane{
     @Override
     public String toString() {
         return super.toString().replace("}",
-                ", type=" + type +
+                ", model.type=" + type +
                 '}');
     }
 

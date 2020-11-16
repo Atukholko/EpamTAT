@@ -1,4 +1,4 @@
-package models;
+package model.type;
 
 public enum MilitaryType {
     FIGHTER, BOMBER, TRANSPORT
