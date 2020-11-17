@@ -90,9 +90,9 @@ public class AirportTest {
     @Test
     public void testExperimentalPlanesHasClassificationLevelHigherThanUnclassified(){
         Airport airport = new Airport(planes);
-        List<ExperimentalPlane> ExperimentalPlanes = airport.getExperimentalPlanes();
+        List<ExperimentalPlane> experimentalPlanes = airport.getExperimentalPlanes();
         boolean hasUnclassifiedPlanes = false;
-        for(ExperimentalPlane experimentalPlane : ExperimentalPlanes){
+        for(ExperimentalPlane experimentalPlane : experimentalPlanes){
             if(experimentalPlane.getClassificationLevel() == ClassificationLevel.UNCLASSIFIED){
                 hasUnclassifiedPlanes = true;
                 break;
