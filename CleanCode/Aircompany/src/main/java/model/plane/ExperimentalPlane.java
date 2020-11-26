@@ -1,4 +1,4 @@
-package model.planes;
+package model.plane;
 
 import model.type.ClassificationLevel;
 import model.type.ExperimentalTypes;
