@@ -38,14 +38,10 @@ public class AirportTest {
     public void testHasAtLeastOneTransportInMilitaryPlanes() {
         Airport airport = new Airport(planes);
         List<MilitaryPlane> transportMilitaryPlanes = airport.getTransportMilitaryPlanes();
-        boolean hasAtLeastOneTransportMilitaryPlane = false;
-        for (MilitaryPlane militaryPlane : transportMilitaryPlanes) {
-            if ((militaryPlane.getType() == MilitaryType.TRANSPORT)) {
-                hasAtLeastOneTransportMilitaryPlane = true;
-                break;
-            }
-        }
-        Assert.assertTrue(hasAtLeastOneTransportMilitaryPlane);
+        boolean haveTransportMilitaryPlanes = transportMilitaryPlanes
+                .stream()
+                .allMatch(militaryPlane -> militaryPlane.getType() == MilitaryType.TRANSPORT);
+        Assert.assertTrue(haveTransportMilitaryPlanes);
     }
 
     @Test
@@ -77,13 +73,9 @@ public class AirportTest {
     public void testHasAtLeastOneBomberInMilitaryPlanes() {
         Airport airport = new Airport(planes);
         List<MilitaryPlane> bomberMilitaryPlanes = airport.getBomberMilitaryPlanes();
-        boolean hasAtLeastOneBomberInMilitaryPlanes = false;
-        for (MilitaryPlane militaryPlane : bomberMilitaryPlanes) {
-            if ((militaryPlane.getType() == MilitaryType.BOMBER)) {
-                hasAtLeastOneBomberInMilitaryPlanes = true;
-                break;
-            }
-        }
+        boolean hasAtLeastOneBomberInMilitaryPlanes = bomberMilitaryPlanes
+                .stream()
+                .anyMatch(militaryPlane -> militaryPlane.getType() == MilitaryType.BOMBER);
         Assert.assertTrue(hasAtLeastOneBomberInMilitaryPlanes);
     }
 
@@ -91,13 +83,10 @@ public class AirportTest {
     public void testExperimentalPlanesHasClassificationLevelHigherThanUnclassified(){
         Airport airport = new Airport(planes);
         List<ExperimentalPlane> experimentalPlanes = airport.getExperimentalPlanes();
-        boolean hasUnclassifiedPlanes = false;
-        for(ExperimentalPlane experimentalPlane : experimentalPlanes){
-            if(experimentalPlane.getClassificationLevel() == ClassificationLevel.UNCLASSIFIED){
-                hasUnclassifiedPlanes = true;
-                break;
-            }
-        }
-        Assert.assertFalse(hasUnclassifiedPlanes);
+        boolean hasUnclassifiedPlanes = experimentalPlanes
+                .stream()
+                .allMatch(experimentalPlane ->
+                        experimentalPlane.getClassificationLevel() != ClassificationLevel.UNCLASSIFIED);
+        Assert.assertTrue(hasUnclassifiedPlanes);
     }
 }
