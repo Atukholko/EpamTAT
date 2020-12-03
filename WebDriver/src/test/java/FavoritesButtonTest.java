@@ -46,7 +46,8 @@ public class FavoritesButtonTest {
     public void favoritesCounterChanging(){
         WebElement accountButton = driver.findElement(By.xpath("//*[@id=\"j-header-react-line-two\"]/div/div[3]/div/button/span"));
         accountButton.click();
-        WebElement favoritesCounter = driver.findElement(By.xpath("//*[@id=\"react-personal\"]/div/div[2]/div/span"));
+        WebElement favoritesCounter = (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"react-personal\"]/div/div[2]/div/span")));
         String expectedCount = "1";
         String actualCount = favoritesCounter.getText();
         Assert.assertEquals(expectedCount, actualCount);
