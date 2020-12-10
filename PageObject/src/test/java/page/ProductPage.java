@@ -1,5 +1,6 @@
 package page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,9 +9,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import wait.CustomWaits;
+
 
 public class ProductPage {
-    private final int WAIT_TIMEOUT_SECONDS = 20;
+    private final int WAIT_TIMEOUT_SECONDS = 10;
     private WebDriver driver;
 
     @FindBy(xpath = "//*[@class='item-tools__li cr-item-tools-putaside']//*[@class=' g-pseudo_href']")
@@ -34,14 +37,34 @@ public class ProductPage {
     @FindBy(xpath = "//*[@class='userToolsWrapper' or @class='userToolsWrapper active']")
     private WebElement accountButtonWrapper;
 
+    @FindBy(xpath = "//a[@class='headerCartBox']")
+    private WebElement cartButton;
+
+    @FindBy(xpath = "//button[text()='В корзину']")
+    private WebElement addToCartButton;
+
+    @FindBy(className = "styles_notificationActionsButton__3HYgl")
+    private WebElement skipNotificationButton;
+
     public ProductPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AjaxElementLocatorFactory(this.driver, WAIT_TIMEOUT_SECONDS), this);
     }
 
-    public WebElement addToFavorites(){
+    public ProductPage openPage(String url){
+        driver.get(url);
+        CustomWaits.waitForPageLoaded(driver);
+        return this;
+    }
+
+    public ProductPage addToFavorites(){
         addToFavoritesButton.click();
-        return addToFavoritesButton;
+        return this;
+    }
+
+    public ProductPage addToCart(){
+        addToCartButton.click();
+        return this;
     }
 
     public String getFavoritesButtonText(){
@@ -53,7 +76,6 @@ public class ProductPage {
     }
 
     public String getFavoritesCount(){
-        openUserTools();
         return favoritesCounter.getText();
     }
 
@@ -84,26 +106,44 @@ public class ProductPage {
         return true;
     }
 
-    public WebElement openUserTools(){
-        if(accountButtonWrapper.getAttribute("class").equals("userToolsWrapper"))
-            accountButton.click();
-        return accountButton;
+    public ProductPage openUserTools(){
+        accountButton.click();
+        return this;
     }
 
-//    public WebElement closeUserTools(){
-//        accountButton.click();
-//        return accountButton;
-//    }
+    public ProductPage closeUserTools(){
+        accountButton.click();
+        return this;
+    }
 
     public FavoritesPage openFavoritesPage(){
         openUserTools();
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.elementToBeClickable(favorites));
         favorites.click();
+        closeUserTools();
+        CustomWaits.waitForPageLoaded(driver);
         return new FavoritesPage(driver);
     }
 
     public String getProductCode(){
         return productCode.getText();
+    }
+
+    public CartPage openCart(){
+        cartButton.click();
+        CustomWaits.waitForPageLoaded(driver);
+        return new CartPage(driver);
+    }
+
+    public ProductPage skipNotification(){
+        try{
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
+                    .until(ExpectedConditions.presenceOfElementLocated(By.className("styles_notificationActionsButton__3HYgl")));
+            skipNotificationButton.click();
+        }catch (TimeoutException e){
+            System.out.println("no notifications were found");
+        }
+        return this;
     }
 }

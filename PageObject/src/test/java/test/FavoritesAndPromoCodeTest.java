@@ -7,10 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import page.ProductListPage;
+import page.CartPage;
+import page.MobileListPage;
 import page.ProductPage;
 
-public class FavoritesAndSmthTest {
+public class FavoritesAndPromoCodeTest {
 
     private WebDriver driver;
     private SoftAssertions softAssertions;
@@ -24,9 +25,10 @@ public class FavoritesAndSmthTest {
 
     @Test
     public void favoritesTest(){
-        ProductPage productPage = new ProductListPage(driver)
+        ProductPage productPage = new MobileListPage(driver)
                 .openPage()
-                .openProductPage();
+                .openProductPage()
+                .skipNotification();
 
         String textBefore = productPage.getFavoritesButtonText();
         String colorBefore = productPage.getStarColor();
@@ -38,6 +40,22 @@ public class FavoritesAndSmthTest {
         softAssertions.assertThat(productPage.isStarColorChanged(colorBefore)).isEqualTo(true);
         softAssertions.assertThat(productPage.isFavoritesCountChanged(countBefore)).isEqualTo(true);
         Assert.assertTrue(productPage.openFavoritesPage().isProductOnPage(productPage.getProductCode()));
+    }
+
+    @Test
+    public void promoCodeTest(){
+        final String promoCode = "КНИГИ";
+        final String bookUrl = "https://www.21vek.by/nonfiction_books/eksmo_03251.html";
+        CartPage cart = new ProductPage(driver)
+                .openPage(bookUrl)
+                .addToCart()
+                .openCart()
+                .inputPromoCode(promoCode)
+                .applyPromoCode();
+
+        Integer oldPrice = Integer.parseInt(cart.getOldPrice().replaceAll("[^\\d]", ""));
+        Integer totalPrice = Integer.parseInt(cart.getTotalCost().replaceAll("[^\\d]", ""));
+        Assert.assertTrue(oldPrice > totalPrice);
     }
 
     @After

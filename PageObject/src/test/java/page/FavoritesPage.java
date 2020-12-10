@@ -3,6 +3,8 @@ package page;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import wait.CustomConditions;
+import wait.CustomWaits;
 
 public class FavoritesPage {
 
