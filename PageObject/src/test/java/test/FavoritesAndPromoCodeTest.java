@@ -18,7 +18,6 @@ public class FavoritesAndPromoCodeTest {
     @Before
     public void browserSetup(){
         driver = new ChromeDriver();
-        driver.manage().window().maximize();
 
     }
 
