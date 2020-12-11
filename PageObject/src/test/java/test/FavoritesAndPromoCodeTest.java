@@ -1,23 +1,19 @@
 package test;
 
 import org.assertj.core.api.SoftAssertions;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import page.CartPage;
 import page.ProductListPage;
 import page.ProductPage;
 
 public class FavoritesAndPromoCodeTest {
 
-    private WebDriver driver;
+    private static WebDriver driver;
 
-    @Before
-    public void browserSetup(){
+    @BeforeClass
+    public static void browserSetup(){
         driver = new ChromeDriver();
     }
 
@@ -71,8 +67,8 @@ public class FavoritesAndPromoCodeTest {
         Assert.assertTrue(oldPrice > totalPrice);
     }
 
-    @After
-    public void browserTearDown(){
+    @AfterClass
+    public static void browserTearDown(){
         driver.quit();
         driver = null;
     }
