@@ -18,8 +18,7 @@ public class FavoritesAndPromoCodeTest {
 
     @Before
     public void browserSetup(){
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
+        driver = new ChromeDriver();
     }
 
     @Test
