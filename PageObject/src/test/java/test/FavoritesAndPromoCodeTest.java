@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import page.CartPage;
 import page.ProductListPage;
 import page.ProductPage;
@@ -17,7 +18,7 @@ public class FavoritesAndPromoCodeTest {
 
     @Before
     public void browserSetup(){
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         driver.manage().window().maximize();
     }
 
