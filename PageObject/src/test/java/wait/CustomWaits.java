@@ -9,5 +9,7 @@ public class CustomWaits {
     public static void waitForPageLoaded(WebDriver driver){
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(CustomConditions.jQueryAJAXsCompleted());
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
+                .until(CustomConditions.waitForLoad());
     }
 }

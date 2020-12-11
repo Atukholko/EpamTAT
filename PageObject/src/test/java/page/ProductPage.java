@@ -5,16 +5,12 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import wait.CustomWaits;
 
 
-public class ProductPage {
-    private final int WAIT_TIMEOUT_SECONDS = 10;
-    private WebDriver driver;
+public class ProductPage extends AbstractPage{
 
     @FindBy(xpath = "//*[@class='item-tools__li cr-item-tools-putaside']//*[@class=' g-pseudo_href']")
     private WebElement addToFavoritesButton;
@@ -47,14 +43,7 @@ public class ProductPage {
     private WebElement skipNotificationButton;
 
     public ProductPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(new AjaxElementLocatorFactory(this.driver, WAIT_TIMEOUT_SECONDS), this);
-    }
-
-    public ProductPage openPage(String url){
-        driver.get(url);
-        CustomWaits.waitForPageLoaded(driver);
-        return this;
+        super(driver);
     }
 
     public ProductPage addToFavorites(){
@@ -144,6 +133,13 @@ public class ProductPage {
         }catch (TimeoutException e){
             System.out.println("no notifications were found");
         }
+        return this;
+    }
+
+    @Override
+    public ProductPage openPage(String url) {
+        driver.get(url);
+        CustomWaits.waitForPageLoaded(driver);
         return this;
     }
 }

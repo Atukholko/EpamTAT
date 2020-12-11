@@ -6,15 +6,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import wait.CustomConditions;
 import wait.CustomWaits;
 
-public class FavoritesPage {
-
-    private final int WAIT_TIMEOUT_SECONDS = 10;
-    private WebDriver driver;
+public class FavoritesPage extends AbstractPage{
 
     private By productLocator;
 
     public FavoritesPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public Boolean isProductOnPage(String code){
@@ -26,5 +23,12 @@ public class FavoritesPage {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public FavoritesPage openPage(String url) {
+        driver.get(url);
+        CustomWaits.waitForPageLoaded(driver);
+        return this;
     }
 }

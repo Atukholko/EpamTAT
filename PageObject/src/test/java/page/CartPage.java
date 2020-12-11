@@ -4,15 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import wait.CustomWaits;
 
-public class CartPage {
-    private final int WAIT_TIMEOUT_SECONDS = 20;
-    private WebDriver driver;
+public class CartPage extends AbstractPage{
 
     @FindBy(xpath = "//*[text()=Оформить заказ]")
     private WebElement checkoutButton;
@@ -30,8 +25,7 @@ public class CartPage {
     private WebElement oldPrice;
 
     public CartPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(new AjaxElementLocatorFactory(this.driver, WAIT_TIMEOUT_SECONDS), this);
+        super(driver);
     }
 
     public CartPage inputPromoCode(String promoCode){
@@ -54,5 +48,12 @@ public class CartPage {
     public String getOldPrice(){
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until((WebDriver driver) -> !oldPrice.getText().equals(""));
         return oldPrice.getText();
+    }
+
+    @Override
+    public CartPage openPage(String url) {
+        driver.get(url);
+        CustomWaits.waitForPageLoaded(driver);
+        return this;
     }
 }
