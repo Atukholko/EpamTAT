@@ -30,6 +30,9 @@ public class CartPage extends AbstractPage{
     @FindBy(className = "promo__oldprice")
     private WebElement oldPrice;
 
+    @FindBy(id = "j-delete-6600772")
+    private WebElement deleteFromCartButton;
+
     public CartPage(WebDriver driver) {
         super(driver);
     }
@@ -41,6 +44,10 @@ public class CartPage extends AbstractPage{
         return this;
     }
 
+    public CartPage deleteFromCart(){
+        deleteFromCartButton.click();
+        return this;
+    }
     public CartPage applyPromoCode(){
         applyPromoCodeButton.click();
         return this;
