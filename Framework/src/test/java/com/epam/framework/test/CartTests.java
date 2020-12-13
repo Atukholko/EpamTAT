@@ -23,4 +23,20 @@ public class CartTests extends CommonConditions{
         Assert.assertTrue(addingToCartWorks);
     }
 
+    @Test
+    public void deleteFromCart(){
+        ProductPage productPage = new MobileListPage(driver)
+                .openPage()
+                .openFirstProductPage();
+
+        String productCode = productPage.getProductCode();
+
+        Boolean deletingFromCartWorks = productPage
+                .addToCart()
+                .openCart()
+                .deleteFromCart()
+                .isProductOnCart(productCode);
+
+        Assert.assertTrue(!deletingFromCartWorks);
+    }
 }
