@@ -20,6 +20,7 @@ public class TestListener implements ITestListener {
 
     public void onTestStart(ITestResult iTestResult) {
         clearFolderWithScreenshots();
+        saveScreenshot();
     }
 
     public void onTestSuccess(ITestResult iTestResult) {
