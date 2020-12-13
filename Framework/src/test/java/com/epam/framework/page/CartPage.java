@@ -70,6 +70,7 @@ public class CartPage extends AbstractPage{
     @Override
     public CartPage openPage() {
         driver.navigate().to(BASE_URL);
+        logger.info("Cart page opened");
         CustomWaits.waitForPageLoaded(driver);
         return this;
     }

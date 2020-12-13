@@ -128,6 +128,7 @@ public class ProductPage extends AbstractPage {
 
     public CartPage openCart(){
         cartButton.click();
+        logger.info("Cart page opened");
         CustomWaits.waitForPageLoaded(driver);
         return new CartPage(driver);
     }

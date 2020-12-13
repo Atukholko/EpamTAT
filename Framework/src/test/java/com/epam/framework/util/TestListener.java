@@ -19,7 +19,7 @@ public class TestListener implements ITestListener {
     private Logger log = LogManager.getRootLogger();
 
     public void onTestStart(ITestResult iTestResult) {
-
+        clearFolderWithScreenshots();
     }
 
     public void onTestSuccess(ITestResult iTestResult) {
@@ -44,6 +44,16 @@ public class TestListener implements ITestListener {
 
     public void onFinish(ITestContext iTestContext) {
 
+    }
+
+    private void clearFolderWithScreenshots(){
+        String path = ".//target/screenshots/";
+        try{
+            for (File myFile : new File(path).listFiles())
+                if (myFile.isFile()) myFile.delete();
+        }catch (NullPointerException exception){
+            log.error(exception.getMessage());
+        }
     }
 
     private void saveScreenshot(){
