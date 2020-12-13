@@ -4,7 +4,7 @@
     <test name="UserAccess">
         <classes>
             <class name="com.epam.framework.test.UserAccessTests"/>
-<!--            <class name="com.epam.framework.test.CartTests"/>-->
+            <class name="com.epam.framework.test.CartTests"/>
         </classes>
     </test>
 </suite>
