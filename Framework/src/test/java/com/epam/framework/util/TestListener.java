@@ -19,8 +19,7 @@ public class TestListener implements ITestListener {
     private Logger log = LogManager.getRootLogger();
 
     public void onTestStart(ITestResult iTestResult) {
-        clearFolderWithScreenshots();
-        saveScreenshot();
+
     }
 
     public void onTestSuccess(ITestResult iTestResult) {
@@ -40,7 +39,8 @@ public class TestListener implements ITestListener {
     }
 
     public void onStart(ITestContext iTestContext) {
-
+        clearFolderWithScreenshots();
+        saveScreenshot();
     }
 
     public void onFinish(ITestContext iTestContext) {
