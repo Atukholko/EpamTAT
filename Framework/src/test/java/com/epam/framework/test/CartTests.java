@@ -10,20 +10,20 @@ import org.testng.annotations.Test;
 public class CartTests extends CommonConditions{
     private Smartphone smartphone = SmartphoneCreator.withUrlFromProperty();
 
-//    @Test
-//    public void addToTheCart() {
-//        ProductPage productPage = new ProductPage(driver, smartphone.getUrl())
-//                .openPage();
-//
-//        String smartphoneCode = productPage.getProductCode();
-//
-//        Boolean addingToCartWorks = productPage
-//                .addToCart()
-//                .openCart()
-//                .isProductOnCart(smartphoneCode);
-//
-//        Assert.assertTrue(addingToCartWorks);
-//    }
+    @Test
+    public void addToTheCart() {
+        ProductPage productPage = new ProductPage(driver, smartphone.getUrl())
+                .openPage();
+
+        String smartphoneCode = productPage.getProductCode();
+
+        Boolean addingToCartWorks = productPage
+                .addToCart()
+                .openCart()
+                .isProductOnCart(smartphoneCode);
+
+        Assert.assertTrue(addingToCartWorks);
+    }
 
     @Test
     public void deleteFromCart(){

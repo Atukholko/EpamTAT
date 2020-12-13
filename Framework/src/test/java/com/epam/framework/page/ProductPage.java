@@ -60,6 +60,7 @@ public class ProductPage extends AbstractPage {
 
     public ProductPage addToCart(){
         addToCartButton.click();
+        CustomWaits.waitForPageLoaded(driver);
         return this;
     }
 
