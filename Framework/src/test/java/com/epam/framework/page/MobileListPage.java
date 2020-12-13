@@ -22,6 +22,7 @@ public class MobileListPage extends AbstractPage {
 
     public ProductPage openFirstProductPage(){
         firstProductInList.click();
+        logger.info("Mobiles phone page opened");
         CustomWaits.waitForPageLoaded(driver);
         return new ProductPage(driver);
     }

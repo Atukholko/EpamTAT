@@ -8,6 +8,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -30,11 +31,14 @@ public class CartPage extends AbstractPage{
     @FindBy(className = "promo__oldprice")
     private WebElement oldPrice;
 
-    @FindBy(id = "j-delete-6600772")
-    private WebElement deleteFromCartButton;
+//    @FindBy(xpath = "//*[@id=\"j-delete-5416247\"]")
+//    private WebElement deleteFromCartButton;
+
+    private By deleteFromCartButtonLocator = By.id("j-delete-5416247");
 
     public CartPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(this.driver, this);
     }
 
     public CartPage inputPromoCode(String promoCode){
@@ -45,7 +49,10 @@ public class CartPage extends AbstractPage{
     }
 
     public CartPage deleteFromCart(){
+        WebElement deleteFromCartButton = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
+                .until(ExpectedConditions.presenceOfElementLocated(deleteFromCartButtonLocator));
         deleteFromCartButton.click();
+        CustomWaits.waitForPageLoaded(driver);
         return this;
     }
     public CartPage applyPromoCode(){
@@ -64,7 +71,7 @@ public class CartPage extends AbstractPage{
     }
 
     public Boolean isProductOnCart(String productCode){
-        By productLocator = By.xpath("//*[text()=\'" + productCode + "\']");
+        By productLocator = By.xpath("//*[@id=\"j-basket__items\"]//*[text()='" + productCode + "']");
         try{
             new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                     .until(ExpectedConditions.presenceOfElementLocated(productLocator));
