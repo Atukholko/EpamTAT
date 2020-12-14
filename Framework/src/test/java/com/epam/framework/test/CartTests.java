@@ -8,35 +8,27 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CartTests extends CommonConditions{
-    private Smartphone smartphone = SmartphoneCreator.withUrlFromProperty();
+    private Smartphone smartphone = SmartphoneCreator.withUrlAndCodeFromProperty();
 
     @Test
     public void addToTheCart() {
-        ProductPage productPage = new ProductPage(driver, smartphone.getUrl())
-                .openPage();
-
-        String smartphoneCode = productPage.getProductCode();
-
-        Boolean addingToCartWorks = productPage
+        Boolean addingToCartWorks = new ProductPage(driver, smartphone.getUrl())
+                .openPage()
                 .addToCart()
                 .openCart()
-                .isProductOnCart(smartphoneCode);
+                .isProductOnCart(smartphone.getCode());
 
         Assert.assertTrue(addingToCartWorks);
     }
 
     @Test
     public void deleteFromCart(){
-        ProductPage productPage = new ProductPage(driver, smartphone.getUrl())
-                .openPage();
-
-        String smartphoneCode = productPage.getProductCode();
-
-        Boolean deletingFromCartWorks = !productPage
+        Boolean deletingFromCartWorks = !new ProductPage(driver, smartphone.getUrl())
+                .openPage()
                 .addToCart()
                 .openCart()
                 .deleteFromCart()
-                .isProductOnCart(smartphoneCode);
+                .isProductOnCart(smartphone.getCode());
 
         Assert.assertTrue(deletingFromCartWorks);
     }

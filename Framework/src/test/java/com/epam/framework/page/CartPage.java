@@ -71,11 +71,12 @@ public class CartPage extends AbstractPage{
     }
 
     public Boolean isProductOnCart(String productCode){
-        By productLocator = By.xpath("//*[@id=\"j-basket__items\"]//*[text()='" + productCode + "']");
+        By productLocator = By.xpath("//*[@id=\"j-basket__items\"]//*[text()='код " + productCode + "']");
         try{
             new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                     .until(ExpectedConditions.presenceOfElementLocated(productLocator));
         }catch (TimeoutException e){
+            logger.info("Product not found");
             return false;
         }
         return true;

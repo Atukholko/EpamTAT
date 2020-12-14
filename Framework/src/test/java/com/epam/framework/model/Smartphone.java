@@ -4,23 +4,34 @@ import java.util.Objects;
 
 public class Smartphone {
     private String url;
+    private String code;
 
-    public Smartphone(String url) {
+    public Smartphone(String url, String code) {
         this.url = url;
+        this.code = code;
     }
 
     public String getUrl() {
         return url;
     }
 
+    public String getCode() {
+        return code;
+    }
+
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Smartphone{");
         sb.append("url='").append(url).append('\'');
+        sb.append(", code='").append(code).append('\'');
         sb.append('}');
         return sb.toString();
     }
@@ -30,11 +41,12 @@ public class Smartphone {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Smartphone that = (Smartphone) o;
-        return Objects.equals(url, that.url);
+        return Objects.equals(url, that.url) &&
+                Objects.equals(code, that.code);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(url);
+        return Objects.hash(url, code);
     }
 }
