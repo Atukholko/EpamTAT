@@ -2,40 +2,36 @@ package com.epam.framework.model;
 
 import java.util.Objects;
 
-public class Product {
+public class ProductWithPromoCode {
     private String url;
-    private String code;
+    private String promoCode;
 
-    public Product(String url) {
+    public ProductWithPromoCode(String url, String promoCode) {
         this.url = url;
-    }
-
-    public Product(String url, String code) {
-        this.url = url;
-        this.code = code;
+        this.promoCode = promoCode;
     }
 
     public String getUrl() {
         return url;
     }
 
-    public String getCode() {
-        return code;
+    public String getPromoCode() {
+        return promoCode;
     }
 
     public void setUrl(String url) {
         this.url = url;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setPromoCode(String promoCode) {
+        this.promoCode = promoCode;
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Product{");
+        final StringBuilder sb = new StringBuilder("ProductWithPromoCode{");
         sb.append("url='").append(url).append('\'');
-        sb.append(", code='").append(code).append('\'');
+        sb.append(", promoCode='").append(promoCode).append('\'');
         sb.append('}');
         return sb.toString();
     }
@@ -44,13 +40,13 @@ public class Product {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Product that = (Product) o;
+        ProductWithPromoCode that = (ProductWithPromoCode) o;
         return Objects.equals(url, that.url) &&
-                Objects.equals(code, that.code);
+                Objects.equals(promoCode, that.promoCode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(url, code);
+        return Objects.hash(url, promoCode);
     }
 }
