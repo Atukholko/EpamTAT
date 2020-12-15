@@ -1,34 +1,33 @@
 package com.epam.framework.test;
 
-import com.epam.framework.model.Smartphone;
-import com.epam.framework.page.MobileListPage;
+import com.epam.framework.model.Product;
 import com.epam.framework.page.ProductPage;
-import com.epam.framework.service.SmartphoneCreator;
+import com.epam.framework.service.ProductCreator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CartTests extends CommonConditions{
-    private Smartphone smartphone = SmartphoneCreator.withUrlAndCodeFromProperty();
+    private Product product = ProductCreator.withUrlAndCodeFromProperty();
 
     @Test
-    public void addToTheCart() {
-        Boolean addingToCartWorks = new ProductPage(driver, smartphone.getUrl())
+    public void addToCart() {
+        Boolean addingToCartWorks = new ProductPage(driver, product.getUrl())
                 .openPage()
                 .addToCart()
                 .openCart()
-                .isProductOnCart(smartphone.getCode());
+                .isProductOnCart(product.getCode());
 
         Assert.assertTrue(addingToCartWorks);
     }
 
     @Test
     public void deleteFromCart(){
-        Boolean deletingFromCartWorks = !new ProductPage(driver, smartphone.getUrl())
+        Boolean deletingFromCartWorks = !new ProductPage(driver, product.getUrl())
                 .openPage()
                 .addToCart()
                 .openCart()
                 .deleteFromCart()
-                .isProductOnCart(smartphone.getCode());
+                .isProductOnCart(product.getCode());
 
         Assert.assertTrue(deletingFromCartWorks);
     }
