@@ -2,11 +2,11 @@ package com.epam.framework.model;
 
 import java.util.Objects;
 
-public class Smartphone {
+public class Product {
     private String url;
     private String code;
 
-    public Smartphone(String url, String code) {
+    public Product(String url, String code) {
         this.url = url;
         this.code = code;
     }
@@ -29,7 +29,7 @@ public class Smartphone {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Smartphone{");
+        final StringBuilder sb = new StringBuilder("Product{");
         sb.append("url='").append(url).append('\'');
         sb.append(", code='").append(code).append('\'');
         sb.append('}');
@@ -40,7 +40,7 @@ public class Smartphone {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Smartphone that = (Smartphone) o;
+        Product that = (Product) o;
         return Objects.equals(url, that.url) &&
                 Objects.equals(code, that.code);
     }
