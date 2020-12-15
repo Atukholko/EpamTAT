@@ -31,9 +31,6 @@ public class CartPage extends AbstractPage{
     @FindBy(className = "promo__oldprice")
     private WebElement oldPrice;
 
-//    @FindBy(xpath = "//*[@id=\"j-delete-5416247\"]")
-//    private WebElement deleteFromCartButton;
-
     private By deleteFromCartButtonLocator = By.id("j-delete-5416247");
 
     public CartPage(WebDriver driver) {
