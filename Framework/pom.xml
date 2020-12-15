@@ -10,7 +10,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <suiteXml>src/test/resources/test-all.xml</suiteXml>
+        <suiteXml>src/test/resources/test-smoke.xml</suiteXml>
     </properties>
 
     <dependencies>
