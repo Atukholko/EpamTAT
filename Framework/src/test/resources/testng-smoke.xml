@@ -4,6 +4,10 @@
     <test name="UserAccess">
         <classes>
             <class name="com.epam.framework.test.UserAccessTests"/>
+        </classes>
+    </test>
+    <test name="Cart">
+        <classes>
             <class name="com.epam.framework.test.CartTests"/>
         </classes>
     </test>
