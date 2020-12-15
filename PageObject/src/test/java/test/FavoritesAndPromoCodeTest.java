@@ -49,10 +49,10 @@ public class FavoritesAndPromoCodeTest {
 
     @Test
     public void promoCodeTest(){
-        final String PROMO_CODE = "КНИГИ";
-        final String BOOK_URL = "https://www.21vek.by/nonfiction_books/eksmo_03251.html";
+        final String PROMO_CODE = "СНЕЖНО";
+        final String PRODUCT = "https://www.21vek.by/sleds/s111_sundays_01.html";
         CartPage cart = new ProductPage(driver)
-                .openPage(BOOK_URL)
+                .openPage(PRODUCT)
                 .addToCart()
                 .openCart()
                 .inputPromoCode(PROMO_CODE)
