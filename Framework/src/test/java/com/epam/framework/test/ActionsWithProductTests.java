@@ -12,7 +12,7 @@ public class ActionsWithProductTests extends CommonConditions{
     private SoftAssert softAssert = new SoftAssert();
 
     @Test
-    public void AddingToFavoritesTest(){
+    public void addingToFavoritesTest(){
 
         ProductPage productPage = new ProductPage(driver, product.getUrl())
                 .openPage();
